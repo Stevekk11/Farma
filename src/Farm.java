@@ -5,44 +5,62 @@ public class Farm {
     protected ArrayList<Flower> garden;
     protected final int MAX_ANIMALS = 20;
     protected int gardenSize = 100;
+    protected int money;
 
-    public Farm() {
+    public Farm(int money) {
         this.animals = new ArrayList<>();
         this.garden = new ArrayList<>();
+        this.money = money;
     }
-    public void addAnimal(Animal a){
+
+    private void addAnimal(Animal a) {
         animals.add(a);
     }
-    public void removeAnimal(Animal a){
+
+    public void removeAnimal(Animal a) {
         animals.remove(a);
     }
-    public void addPlant(Flower f){
+
+    public void addPlant(Flower f) {
         garden.add(f);
         gardenSize -= f.neededArea;
-        if (gardenSize == 0){
+        if (gardenSize == 0) {
             throw new RuntimeException("Garden is already full");
         }
     }
-    public void removePlant(Flower flower){
+
+    public void removePlant(Flower flower) {
         garden.remove(flower);
         gardenSize += flower.neededArea;
     }
 
-    public void checkFullness(){
-       int smallAnimals = 0;
-       int bigAnimals = 0;
-       for (Animal animal : animals){
-           if (animal.getSize() == Size.BIG){
-               bigAnimals++;
-           } else smallAnimals++;
-       }
-       if (bigAnimals >MAX_ANIMALS/2 || smallAnimals>MAX_ANIMALS/2){
-           throw new RuntimeException("The Farm is full");
-       }
+    public String caressAnimal(Animal a) {
+        a.makeSound();
+        return "You cared for: " + a.getName();
     }
-    public void checkAnimalsOrPlants(String s){
-        switch (s){
+    public void buyAnimal(Animal a){
+        int cost = 0;
+        if (a.getSize() == Size.BIG){
+            cost += 200;
+        } else if (a.getSize() == Size.SMALL){
+            cost+=100;
+        }
+        money = money-cost;
+        if (money !=0){
+            addAnimal(a);
+        } else throw new RuntimeException("NO MONEYZ");
+    }
 
+    public void checkFullness() {
+        int smallAnimals = 0;
+        int bigAnimals = 0;
+        for (Animal animal : animals) {
+            if (animal.getSize() == Size.BIG) {
+                bigAnimals++;
+            } else smallAnimals++;
+        }
+        if (bigAnimals > MAX_ANIMALS / 2 || smallAnimals > MAX_ANIMALS / 2) {
+            throw new RuntimeException("The Farm is full");
         }
     }
 }
