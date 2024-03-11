@@ -5,6 +5,7 @@ public class Sheep extends Animal{
         this.size = size;
         this.specialCare = special;
     }
+    @Override
     public void makeSound(){
         System.out.println("Moo");
     }
