@@ -21,12 +21,20 @@ public class Farm {
         animals.remove(a);
     }
 
-    public void addPlant(Flower f) {
+    private void addPlant(Flower f) {
         garden.add(f);
         gardenSize -= f.neededArea;
         if (gardenSize == 0) {
             throw new RuntimeException("Garden is already full");
         }
+    }
+    public void buyPlant(Flower flower){
+        double cost = 0;
+        cost = flower.getPrice();
+        money -= cost;
+        if (money !=0){
+            addPlant(flower);
+        } else throw new RuntimeException("NO money");
     }
 
     public void removePlant(Flower flower) {
@@ -50,6 +58,20 @@ public class Farm {
             addAnimal(a);
         } else throw new RuntimeException("NO MONEYZ");
     }
+    public void sellAnimal(Animal a){
+        int cost = 0;
+        if (a.getSize() == Size.BIG){
+            cost -= 200;
+        } else if (a.getSize() == Size.SMALL){
+            cost-=100;
+        }
+        money = money+cost;
+        removeAnimal(a);
+    }
+    public int checkMoney(){
+        return money;
+    }
+
 
     public void checkFullness() {
         int smallAnimals = 0;
