@@ -1,9 +1,9 @@
 public class Sheep extends Animal{
-    public Sheep() {
-        size = Size.BIG;
-        type = "mammal";
-        name = "Ivet";
-        specialCare = "Must be shaven every week";
+    public Sheep(String type, String name, Size size,String special ) {
+        this.type = type;
+        this.name = name;
+        this.size = size;
+        this.specialCare = special;
     }
     public void makeSound(){
         System.out.println("Moo");
