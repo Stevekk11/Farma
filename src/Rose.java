@@ -6,6 +6,7 @@ public class Rose extends Flower{
         this.neededArea = area;
         this.chanceOfGrowth = chance;
     }
+    @Override
     public void watered(int liters){
         chanceOfGrowth = liters*0.5 + chanceOfGrowth;
     }

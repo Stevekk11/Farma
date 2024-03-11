@@ -28,11 +28,12 @@ public class Farm {
             throw new RuntimeException("Garden is already full");
         }
     }
-    public void buyPlant(Flower flower){
+
+    public void buyPlant(Flower flower) {
         double cost = 0;
         cost = flower.getPrice();
         money -= cost;
-        if (money !=0){
+        if (money != 0) {
             addPlant(flower);
         } else throw new RuntimeException("NO money");
     }
@@ -46,30 +47,56 @@ public class Farm {
         a.makeSound();
         return "You cared for: " + a.getName();
     }
-    public void buyAnimal(Animal a){
+
+    public void buyAnimal(Animal a) {
         int cost = 0;
-        if (a.getSize() == Size.BIG){
+        if (a.getSize() == Size.BIG) {
             cost += 200;
-        } else if (a.getSize() == Size.SMALL){
-            cost+=100;
+        } else if (a.getSize() == Size.SMALL) {
+            cost += 100;
         }
-        money = money-cost;
-        if (money !=0){
+        money = money - cost;
+        if (money != 0) {
             addAnimal(a);
         } else throw new RuntimeException("NO MONEYZ");
     }
-    public void sellAnimal(Animal a){
+
+    public void sellAnimal(Animal a) {
         int cost = 0;
-        if (a.getSize() == Size.BIG){
+        if (a.getSize() == Size.BIG) {
             cost -= 200;
-        } else if (a.getSize() == Size.SMALL){
-            cost-=100;
+        } else if (a.getSize() == Size.SMALL) {
+            cost -= 100;
         }
-        money = money+cost;
+        money = money + cost;
         removeAnimal(a);
     }
-    public int checkMoney(){
+
+    public int checkMoney() {
         return money;
+    }
+
+    public void careForAnimalsOrPlants(String s, int i, Animal animal, Flower flower, int liters) {
+        switch (s) {
+            case "Animals" -> careForAnimal(i,animal);
+            case "Plants" -> careForPlant(i,flower,liters);
+        }
+    }
+
+    private void careForAnimal(int i, Animal animal) {
+        System.out.println("Select what do you want to do");
+        switch (i) {
+            case 1 -> buyAnimal(animal);
+            case 2 -> sellAnimal(animal);
+            case 3 -> caressAnimal(animal);
+        }
+    }
+    private void careForPlant(int i, Flower flower, int liters) {
+        System.out.println("Select what do you want to do");
+        switch (i) {
+            case 1 -> buyPlant(flower);
+            case 2 -> flower.watered(liters);
+        }
     }
 
 

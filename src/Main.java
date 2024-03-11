@@ -6,8 +6,11 @@ public class Main {
         Flower rose = new Rose("Rose",100,15,40.41);
         farm.buyAnimal(cow);
         farm.buyAnimal(sheep);
+        farm.buyPlant(rose);
         System.out.println(farm.checkMoney());
         System.out.println(farm.animals);
-
+        System.out.println(farm.garden);
+        System.out.println(farm.caressAnimal(cow));
+        farm.sellAnimal(cow);
     }
 }

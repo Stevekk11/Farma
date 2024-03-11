@@ -46,4 +46,7 @@ public abstract class Flower {
     public void setChanceOfGrowth(double chanceOfGrowth) {
         this.chanceOfGrowth = chanceOfGrowth;
     }
+    public void watered(int liters){
+
+    }
 }
