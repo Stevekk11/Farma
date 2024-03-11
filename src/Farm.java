@@ -23,6 +23,10 @@ public class Farm {
             throw new RuntimeException("Garden is already full");
         }
     }
+    public void removePlant(Flower flower){
+        garden.remove(flower);
+        gardenSize += flower.neededArea;
+    }
 
     public void checkFullness(){
        int smallAnimals = 0;
